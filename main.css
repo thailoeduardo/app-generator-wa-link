@@ -1,0 +1,13 @@
+.templete-phone {
+	background-color: #ece5dd
+	/* backgroun: url('/mobile.svg') */
+}
+
+.templete-phone__message {
+	background-color: #dcf8c5;
+	outline: 0;
+}
+
+.is-active {
+	display: block !important;
+}

@@ -26,12 +26,16 @@
 		if( !domInputLinkGenerator || phone == '' || message == '') {
 			console.log("Input not found")
 		}
+		const domContainerLinkGenerator = document.querySelector("#container-link-generator");
+
 
 		const domain = 'https://wa.me/'; // https://api.whatsapp.com/send?
 		const phoneFormated =  phone.replace(/\D/g, '');
 		const messageFormated = `?text=${encodeURIComponent(message)}`;
 		
 		domInputLinkGenerator.value = `${domain}${phoneFormated}${messageFormated}`;
+
+		domContainerLinkGenerator.classList.add( 'is-active' );
 	}
 
 	document.addEventListener("DOMContentLoaded", function () {
