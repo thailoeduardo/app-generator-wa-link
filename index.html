@@ -5,6 +5,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gerador de links para o WhastApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="main.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -14,7 +19,7 @@
   <header class="p-3 text-bg-dark">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">Gerador de links whatsApp</a>
+        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">Kriathus - Gerador de links whatsApp</a>
 
         <!-- <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
@@ -38,123 +43,101 @@
   </header>
 
   <main>
-    <section>
-      <div class="container">
-        <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-          <div class="container-fluid py-5">
-            <h2 class="display-5 fw-bold">Crie links no whatsApp</h2>
-            <p class="col-md-8 fs-4">Utilize o gerenciador de links gratuito para gerar links de whatsApp,</p>
-            <!-- <button class="btn btn-primary btn-lg" type="button">Entrar em Contato</button> -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="mb-3">
-      <div class="container">
+    <section class="my-5">
+      <div class="container rounded-5 p-5" style="background-color: #ece5dd;">
         <div class="row align-items-center g-lg-5">
-          <div class="col-md-10 mx-auto col-lg-5">
-            <form id="formPhoneMesssage" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary" style="background-image: url('/hero-background.jpeg');">
+          <div class="col-md-10 col-lg-5 mx-auto">
+            <h2 class="lead">Gerador de Link de WhatsApp</h2>
+
+            <form id="formPhoneMesssage" method="post" class="p-4 p-md-5 border rounded-3 bg-body-tertiary form-generate-link">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="inputPhone" placeholder="name@example.com">
+                <input type="text" class="form-control form-generate-link__field-phone" id="inputPhone" placeholder="" required>
                 <label for="inputPhone">Telefone</label>
               </div>
+
               <div class="form-floating mb-3">
-                <textarea class="form-control" placeholder="sua mensagem" id="inputMessage"></textarea>
+                <textarea class="form-control form-generate-link__field-message" placeholder="sua mensagem" id="inputMessage" rows="5"></textarea>
                 <label for="floatingTextarea">Mensagem (opcional)</label>
               </div>
 
-              <button class="w-100 btn btn-lg btn-primary" type="submit">Gerar link</button>
+              <button class="w-100 btn btn-lg btn-secondary form-generate-link__btn" type="submit">Gerar link</button>
 
               <hr class="my-4 text-white">
-
-              <small class="text-white">Desenvolvido por <a class="text-white" href="https://kriahus.com.br" target="_blank" rel="noopener noreferrer">Kriathus</a>.</small>
+              
+              <small class="text-white">Como ficará sua mensagem</small>
+              <span id="inputLinkWhatsapp" class="templete-phone__message border-0 w-100 rounded-1 shadow-none p-2"></span>
             </form>
           </div>
 
           <div class="col-lg-7 text-center text-lg-start">
-            <h2 class="display-5 fw-bold lh-1 text-body-emphasis mb-3">Como ficará a mensagem</h2>
-            <!-- <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p> -->
-            <div class="templete-phone p-5">
-              <textarea class="templete-phone__message border-0 w-100 rounded-1 shadow-none p-2" name="" id="inputLinkWhatsapp" rows="3" readonly></textarea>
+            <p class="col-md-8 fs-2">Com nosso gerenciador de links gratuito, você pode:</p>
+
+            <ul class="list-group list-group-flush">
+              <li class="lead mb-2">Começar conversas instantaneamente sem precisar adicionar números ou digitar mensagens.</li>
+              <li class="lead mb-2">Compartilhar links em qualquer lugar: redes sociais, site, e-mail, anúncios... as possibilidades são infinitas!</li>
+              <li class="lead mb-2">Personalizar suas mensagens com textos pré-definidos para aumentar o engajamento.</li>
+              <li class="lead mb-2">Acompanhar as visualizações e ter insights sobre o desempenho dos seus links.</li>
+            </ul>
+
+            <ul>
+              
+              
+              
+              
+            </ul>
+          </div>
+
+          <div id="container-link-generator" class="col-12 m-0 d-none">
+            <div class="card-link">
+              <hr />
+
+              <p class="mb-0 lead card-link__title">Link gerado com sucesso!</p>
+
+              <div class="d-flex align-items-center p-3 my-2 bg-white rounded-1 card-link__link-generated">
+                <span class="material-symbols-outlined card-link__icone-link">link</span>
+                <span id="inputLinkGenerator" class="ps-1 border-0 shadow-none w-100 card-link__field-link"></span>
+              </div>
+
+              <button id="btn-copy-link" class="btn btn-secondary d-flex px-5 py-2 card-link__btn-copy-link" type="button"><span class="material-symbols-outlined">content_copy</span> Copiar link</button>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="container-link-generator"  class="d-none">
-      <div class="container my-5">
-        <div class="position-relative p-5 text-center text-muted bg-body border border-dashed rounded-5">
-          <!-- <button type="button" class="position-absolute top-0 end-0 p-3 m-3 btn-close bg-secondary bg-opacity-10 rounded-pill" aria-label="Close"></button> -->
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/></svg> -->
-          <h1 class="text-body-emphasis">Seu link gerado</h1>
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row align-items-center justify-content-center g-5 py-5">
+        <div class="col-lg-8">
+          <h3 class="display-5 fw-bold text-body-emphasis lh-1 mb-3 text-center">Sobre a Kriathus</h3>
 
-          <textarea name="" id="inputLinkGenerator" rows="3" class="w-100"></textarea>
+          <img src="/thumbnail.jpg" class="d-block mx-lg-auto img-fluid mb-3" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
 
-          <p class="col-lg-6 mx-auto mb-4">This faded back jumbotron is useful for placeholder content.</p>
+          <p class="lead">Somos uma equipe apaixonada de mentes criativas na vanguarda da inovação em desenvolvimento de software. </p>
+          <p class="lead">💻💡 Na Kriathus, não apenas criamos código, mas construímos soluções que impulsionam o sucesso dos nossos clientes.</p>
+          <p class="lead">🔍 Explorando as fronteiras da tecnologia, oferecemos soluções customizadas e inovadoras para atender às necessidades exclusivas do seu negócio. Do design intuitivo à implementação robusta, estamos aqui para transformar sua visão em realidade digital.</p>
+          <p class="lead">💬 Queremos ouvir sua história e entender como podemos impulsionar o crescimento do seu negócio. Junte-se a nós nesta jornada emocionante rumo ao sucesso digital! 💼🚀</p>
+          <p class="lead">📩 Entre em contato para uma consulta gratuita e descubra como a Kriathus pode ser a parceira ideal para suas aspirações digitais.</p>
 
-          <button class="btn btn-secondary px-5" type="button">Copiar link</button>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a class="btn btn-outline-dark" href="https://kriathus.com.br" target="_blank">WhatsApp</a>
+            <a class="btn btn-outline-dark" href="https://wa.me/51991188981?text=Ol%C3%A1%2C%20Tudo%20bem%3F" target="_blank">Visitar site</a>
+          </div>
         </div>
       </div>
-    </section>
-
-    <section class="overflow-hidden">
-      <div class="container-fluid col-xxl-8">
-        <div class="row flex-lg-nowrap align-items-center g-5">
-          <div class="order-lg-1 w-100">
-            <img style="clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%); width: 100%; height: 610px;" src="/background.jpg" class="d-block mx-lg-auto img-fluid" alt="Photo by Milad Fakurian" loading="lazy">
-          </div>
-          <div class="col-lg-6 col-xl-5 text-center text-lg-start pt-lg-5 mt-xl-4">
-            <div class="lc-block mb-4">
-              <div editable="rich">
-                <h1 class="fw-bold display-3">Kriathus</h1>
-              </div>
-            </div>
-
-            <div class="lc-block mb-5">
-              <div editable="rich">
-                <p class="rfs-8"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et metus id ligulamalesuada placerat sit amet quis enim.</p>
-              </div>
-            </div>
-
-            <div class="lc-block mb-6"><a class="btn btn-primary px-4 me-md-2 btn-lg" href="#" role="button">Entrar em contato</a>
-            </div>
-
-            <div class="lc-block">
-              <div editable="rich">
-                <p class="fw-bold"> Business collaboration based on trust:</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
+    </div>
   </main>
 
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3">
     <div class="container">
-      <div class="col-md-4 d-flex align-items-center">
-        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-          <svg class="bi" width="30" height="24">
-            <use xlink:href="#bootstrap"></use>
-          </svg>
-        </a>
-        <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Company, Inc</span>
+      
+      <div class="d-grid gap-2 d-md-flex justify-content-center">
+        <a class="btn btn-link text-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="https://facebook.com/kriathus" target="_blank">Facebook</a>
+        <a class="btn btn-link text-dark link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="https://instagram.com/kriathus" target="_blank">Instagram</a>
       </div>
 
-      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-              <use xlink:href="#twitter"></use>
-            </svg></a></li>
-        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-              <use xlink:href="#instagram"></use>
-            </svg></a></li>
-        <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24">
-              <use xlink:href="#facebook"></use>
-            </svg></a></li>
-      </ul>
+      <div class="col-12 d-flex align-items-center justify-content-center">
+        <span class="mb-3 mb-md-0 text-body-secondary">© 2024 Kriathus</span>
+      </div>
     </div>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

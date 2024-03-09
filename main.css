@@ -1,3 +1,10 @@
+
+html,
+body {
+	font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+}
+
 .templete-phone {
 	background-color: #ece5dd
 	/* backgroun: url('/mobile.svg') */
@@ -5,9 +12,55 @@
 
 .templete-phone__message {
 	background-color: #dcf8c5;
-	outline: 0;
+	min-height: 100px;
+	display: inline-block;
+	color: #606060;
+	word-break: break-all;
+	overflow-y: overlay;
 }
 
 .is-active {
 	display: block !important;
+}
+
+
+
+
+.form-generate-link {
+	background-image: url('/hero-background.jpeg');
+}
+
+.form-generate-link__field-phone {
+
+}
+
+.form-generate-link__field-message {
+	height: 150px !important;
+}
+
+.form-generate-link__btn {
+
+}
+
+/* Card link generator */
+.card-link {}
+
+.card-link__title {
+
+}
+
+.card-link__link-generated {
+
+}
+
+.card-link__icone-link {
+
+}
+
+.card-link__field-link {
+	outline: 0;
+}
+
+.card-link__btn-copy-link {
+
 }
