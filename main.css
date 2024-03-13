@@ -27,7 +27,7 @@ body {
 
 
 .form-generate-link {
-	background-image: url('/hero-background.jpeg');
+	background-image: url('./hero-background.jpeg');
 }
 
 .form-generate-link__field-phone {
