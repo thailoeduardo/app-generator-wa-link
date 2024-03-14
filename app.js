@@ -4,15 +4,27 @@
 	 * 
 	 * @param {*} input 
 	 */
-	function phoneFormater(input) {
-		let numeroTelefone = input.value.replace(/\D/g, "");
+	// function phoneFormater(input) {
+	// 	let numeroTelefone = input.value.replace(/\D/g, "");
 
-		if (numeroTelefone.length === 11) {
-			input.value = `(${numeroTelefone.substring(0,2)}) 
-			${numeroTelefone.charAt(2)} ${numeroTelefone.substring(3,7)}-${numeroTelefone.substring(7)}`;
-		} else {
-			input.value = `(${numeroTelefone.substring(0,2)}) ${numeroTelefone.charAt(2)} ${numeroTelefone.substring(3,7)}-${numeroTelefone.substring(7, 11)}`;
-		}
+	// 	if (numeroTelefone.length === 11) {
+	// 		input.value = `(${numeroTelefone.substring(0,2)}) 
+	// 		${numeroTelefone.charAt(2)} ${numeroTelefone.substring(3,7)}-${numeroTelefone.substring(7)}`;
+	// 	} else {
+	// 		input.value = `(${numeroTelefone.substring(0,2)}) ${numeroTelefone.charAt(2)} ${numeroTelefone.substring(3,7)}-${numeroTelefone.substring(7, 11)}`;
+	// 	}
+	// }
+
+	function handleInput(e) {
+		e.target.value = phoneMask(e.target.value)
+	}
+	
+	function phoneMask(phone) {
+		return phone.replace(/\D/g, '')
+			.replace(/^(\d)/, '($1')
+			.replace(/^(\(\d{2})(\d)/, '$1) $2')
+			.replace(/(\d{1,5})(\d{4})/, '$1-$2')
+			.replace(/(-\d{4})\d+?$/, '$1');
 	}
 
 	/**
@@ -59,9 +71,10 @@
 			console.log("Form not found");
 		}
 
-		domInputPhone.addEventListener("input", function () {
-			phoneFormater(this);
-		});
+		domInputPhone.addEventListener('input', handleInput, false)
+		// .addEventListener("input", function () {
+		// 	phoneFormater(this);
+		// });
 
 		// Shoow message
 		domInputMessage.addEventListener( "keyup", function (e) {
