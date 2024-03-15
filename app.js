@@ -39,7 +39,7 @@
 		const phoneFormated = phone.replace(/\D/g, "");
 		const messageFormated = message ? `?text=${encodeURIComponent(message)}` : '';
 
-		domInputLinkGenerator.innerHTML = `${domain}${phoneFormated}${messageFormated}`;
+		domInputLinkGenerator.innerHTML = `${domain}55${phoneFormated}${messageFormated}`;
 
 		domContainerLinkGenerator.classList.add("is-active");
 
