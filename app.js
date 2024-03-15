@@ -4,21 +4,15 @@
 	 *
 	 * @param {*} input
 	 */
-	// function phoneFormater(input) {
-	// 	let numeroTelefone = input.value.replace(/\D/g, "");
-
-	// 	if (numeroTelefone.length === 11) {
-	// 		input.value = `(${numeroTelefone.substring(0,2)})
-	// 		${numeroTelefone.charAt(2)} ${numeroTelefone.substring(3,7)}-${numeroTelefone.substring(7)}`;
-	// 	} else {
-	// 		input.value = `(${numeroTelefone.substring(0,2)}) ${numeroTelefone.charAt(2)} ${numeroTelefone.substring(3,7)}-${numeroTelefone.substring(7, 11)}`;
-	// 	}
-	// }
-
 	function handleInput(e) {
 		e.target.value = phoneMask(e.target.value);
 	}
 
+	/**
+	 * Format the phone number
+	 *
+	 * @param {*} input
+	 */
 	function phoneMask(phone) {
 		return phone
 			.replace(/\D/g, "")
@@ -40,23 +34,46 @@
 			console.log("Input not found");
 		}
 
-		const domContainerLinkGenerator = document.querySelector(
-			"#container-link-generator"
-		);
+		const domContainerLinkGenerator = document.querySelector("#container-link-generator");
 		const domain = "https://wa.me/"; //https://api.whatsapp.com/send?
 		const phoneFormated = phone.replace(/\D/g, "");
-		const messageFormated = `?text=${encodeURIComponent(message)}`;
+		const messageFormated = message ? `?text=${encodeURIComponent(message)}` : '';
 
 		domInputLinkGenerator.innerHTML = `${domain}${phoneFormated}${messageFormated}`;
 
 		domContainerLinkGenerator.classList.add("is-active");
+
+		// Verificar se o elemento está visível na tela
+    if (!isElementInViewport(domContainerLinkGenerator)) {
+			scrollToElement(domContainerLinkGenerator, 80);
+		}
+
+    
 	}
 
 	/**
-	 * Copy created WhatsApp link
-	 *
+	 * Function to smoothly scroll to the desired element
+	 * 
+	 * @param {*} element 
+	 * @param {*} padding 
 	 */
-	function copylinkWhatsapp() {}
+	function scrollToElement(element, padding) {
+    window.scrollTo({
+        behavior: 'smooth',
+        top: element.offsetTop - padding
+    });
+	}
+
+	// Função para verificar se o elemento está visível na tela
+	function isElementInViewport(element) {
+		const rect = element.getBoundingClientRect();
+		return (
+				rect.top >= 0 &&
+				rect.left >= 0 &&
+				rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+				rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+		);
+	}
 
 	document.addEventListener("DOMContentLoaded", function () {
 		const domForm = document.getElementById("formPhoneMesssage");
@@ -73,9 +90,6 @@
 		}
 
 		domInputPhone.addEventListener("input", handleInput, false);
-		// .addEventListener("input", function () {
-		// 	phoneFormater(this);
-		// });
 
 		// Shoow message
 		domInputMessage.addEventListener("keyup", function (e) {
@@ -109,12 +123,9 @@
 				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
 						<div class="modal-dialog modal-dialog-centered">
 								<div class="modal-content">
-										<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Successo!</h5>
+										<div class="modal-header border-0">
+												<p class="modal-title" id="exampleModalLabel">Link copiado com sucesso!</p>
 												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-										</div>
-										<div class="modal-body">
-												<p>Link copiado com sucesso!</p>
 										</div>
 								</div>
 						</div>

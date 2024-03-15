@@ -50,7 +50,7 @@ body {
 }
 
 .card-link__link-generated {
-
+	word-break: break-all;
 }
 
 .card-link__icone-link {
