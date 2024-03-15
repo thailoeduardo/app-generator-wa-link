@@ -1,14 +1,14 @@
 (function () {
 	/**
 	 * Format the phone number
-	 * 
-	 * @param {*} input 
+	 *
+	 * @param {*} input
 	 */
 	// function phoneFormater(input) {
 	// 	let numeroTelefone = input.value.replace(/\D/g, "");
 
 	// 	if (numeroTelefone.length === 11) {
-	// 		input.value = `(${numeroTelefone.substring(0,2)}) 
+	// 		input.value = `(${numeroTelefone.substring(0,2)})
 	// 		${numeroTelefone.charAt(2)} ${numeroTelefone.substring(3,7)}-${numeroTelefone.substring(7)}`;
 	// 	} else {
 	// 		input.value = `(${numeroTelefone.substring(0,2)}) ${numeroTelefone.charAt(2)} ${numeroTelefone.substring(3,7)}-${numeroTelefone.substring(7, 11)}`;
@@ -16,46 +16,47 @@
 	// }
 
 	function handleInput(e) {
-		e.target.value = phoneMask(e.target.value)
+		e.target.value = phoneMask(e.target.value);
 	}
-	
+
 	function phoneMask(phone) {
-		return phone.replace(/\D/g, '')
-			.replace(/^(\d)/, '($1')
-			.replace(/^(\(\d{2})(\d)/, '$1) $2')
-			.replace(/(\d{1,5})(\d{4})/, '$1-$2')
-			.replace(/(-\d{4})\d+?$/, '$1');
+		return phone
+			.replace(/\D/g, "")
+			.replace(/^(\d)/, "($1")
+			.replace(/^(\(\d{2})(\d)/, "$1) $2")
+			.replace(/(\d{1,5})(\d{4})/, "$1-$2")
+			.replace(/(-\d{4})\d+?$/, "$1");
 	}
 
 	/**
 	 * Generate WhatsApp link with number and message
-	 * 
-	 * @param {*} phone 
-	 * @param {*} message 
+	 *
+	 * @param {*} phone
+	 * @param {*} message
 	 */
-	function generateLink(phone = '', message = '') {
+	function generateLink(phone = "", message = "") {
 		const domInputLinkGenerator = document.querySelector("#inputLinkGenerator");
-		if( !domInputLinkGenerator || phone == '' || message == '') {
-			console.log("Input not found")
+		if (!domInputLinkGenerator || phone == "" || message == "") {
+			console.log("Input not found");
 		}
 
-		const domContainerLinkGenerator = document.querySelector("#container-link-generator");
-		const domain = 'https://wa.me/'; //https://api.whatsapp.com/send?
-		const phoneFormated =  phone.replace(/\D/g, '');
+		const domContainerLinkGenerator = document.querySelector(
+			"#container-link-generator"
+		);
+		const domain = "https://wa.me/"; //https://api.whatsapp.com/send?
+		const phoneFormated = phone.replace(/\D/g, "");
 		const messageFormated = `?text=${encodeURIComponent(message)}`;
-		
+
 		domInputLinkGenerator.innerHTML = `${domain}${phoneFormated}${messageFormated}`;
 
-		domContainerLinkGenerator.classList.add( 'is-active' );
+		domContainerLinkGenerator.classList.add("is-active");
 	}
 
 	/**
 	 * Copy created WhatsApp link
-	 * 
+	 *
 	 */
-	function copylinkWhatsapp() {
-
-	}
+	function copylinkWhatsapp() {}
 
 	document.addEventListener("DOMContentLoaded", function () {
 		const domForm = document.getElementById("formPhoneMesssage");
@@ -71,14 +72,14 @@
 			console.log("Form not found");
 		}
 
-		domInputPhone.addEventListener('input', handleInput, false)
+		domInputPhone.addEventListener("input", handleInput, false);
 		// .addEventListener("input", function () {
 		// 	phoneFormater(this);
 		// });
 
 		// Shoow message
-		domInputMessage.addEventListener( "keyup", function (e) {
-			domInputLinkWhatsapp.innerHTML = e.target.value
+		domInputMessage.addEventListener("keyup", function (e) {
+			domInputLinkWhatsapp.innerHTML = e.target.value;
 		});
 
 		// Submit form
@@ -88,26 +89,41 @@
 			const getPhoneValue = domInputPhone.value;
 			const getMessageValue = domInputMessage.value;
 
-			generateLink( getPhoneValue, getMessageValue );
+			generateLink(getPhoneValue, getMessageValue);
 		});
 
+		const domBtnCopyLink = document.getElementById("btn-copy-link");
+		domBtnCopyLink.addEventListener("click", () => {
+			const contentLink = document.getElementById("inputLinkGenerator");
 
-		const domBtnCopyLink = document.getElementById('btn-copy-link');
-		domBtnCopyLink.addEventListener('click', () => {
-			const contentLink = document.getElementById('inputLinkGenerator');
-
-			const tempElement = document.createElement('textarea');
+			const tempElement = document.createElement("textarea");
 			tempElement.textContent = contentLink.textContent;
-		
+
 			document.body.appendChild(tempElement);
-		
 			tempElement.select();
-		
-			document.execCommand('copy');
-	
+			document.execCommand("copy");
 			document.body.removeChild(tempElement);
-		
-			alert('Texto copiado!');
-		}, false )
+
+			const domModalCopyLink = document.createElement("div");
+			domModalCopyLink.innerHTML = `
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+						<div class="modal-dialog modal-dialog-centered">
+								<div class="modal-content">
+										<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Successo!</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+												<p>Link copiado com sucesso!</p>
+										</div>
+								</div>
+						</div>
+				</div>`;
+
+			document.body.appendChild(domModalCopyLink);
+
+			const modalCopyLink = new bootstrap.Modal(document.getElementById("exampleModal"));
+			modalCopyLink.show();
+		});
 	});
 })();
